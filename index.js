@@ -50,16 +50,24 @@ app.use(
     )
 )
 
-app.use(express.json())
-
 //flash messages
 app.use(flash())
+app.use(express.json())
+
+
 
 //public path
 app.use(express.static('public'))
 
-
 //set session to res
+app.use((req,res, next)=>{
+    if(req.session.userid){
+        res.locals.session = req.session
+    }
+    next()
+})
+
+
 
 
 //Routes
@@ -69,14 +77,8 @@ app.use('/',authRoutes )
 
 
 
-app.use((req,res, next)=>{
-    if(req.session.userid){
-        res.locals.session = req.session
-    }
-    next()
-})
 conn
-    .sync({force: true})
+    .sync()
     .then(()=>{
         app.listen(3000)
     }).catch((err)=>{
