@@ -10,13 +10,16 @@
            <span class="label">{{this.title}}</span> 
 
            <span class="actions">
-             <a href="/" class="btn">Editar</a>
-             <form action="/">
+             <a href="/toughts/edit/{{this.id}}" class="btn">Editar</a>
+             <form action="/toughts/remove/{{this.id}}">
               <input type="hidden" name="id" value="{{this.id}}">
               <input type="submit" value="excluir" class="btn">
              </form>
            </span>
             </li>
         {{/each}}
+        {{#if emptyToughts}}
+           <p>Não há pensamentos registrados em seu nome, comece a criar <a href="/toughts/add">clique aqui</a></p>
+        {{/if}}
         </ol>
 </div>
