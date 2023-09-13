@@ -21,7 +21,7 @@ const ToughtsController = require('./controllers/ToughtsController')
 app.engine('handlebars',exphbs.engine())
 app.set('view engine', 'handlebars')
 
-//receber resposta do body
+//body request 
 app.use(
     express.urlencoded({
         extended:true
